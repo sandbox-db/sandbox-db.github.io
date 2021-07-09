@@ -9,26 +9,26 @@
 
    </head>
    <body>
-       Now 8:35
+       Now 8:41
        <div id="map">
        </div>
        <script>
            
            //var mymap = L.map('map').setView([44.606636773474854, -72.26347660710185], 10); //larger number more zoom 
 	       
-	      var brewery = L.icon({
-               iconUrl: 'leaflet/images/brewery.png', //make sure this is the correct path
-               iconSize:     [38, 45], // size of the icon
-               iconAnchor:   [19, 1], // point of the icon which will correspond to marker's location
-               popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-           });
-           
-          var distillery = L.icon({
-               iconUrl: 'leaflet/images/whiskey_still.png', //make sure this is the correct path
-               iconSize:     [38, 45], // size of the icon
-               iconAnchor:   [19, 1], // point of the icon which will correspond to marker's location
-               popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-           });
+	      //var brewery = L.icon({
+          //     iconUrl: 'leaflet/images/brewery.png', //make sure this is the correct path
+          //     iconSize:     [38, 45], // size of the icon
+          //     iconAnchor:   [19, 1], // point of the icon which will correspond to marker's location
+          //     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+          // });
+          // 
+          //var distillery = L.icon({
+          //     iconUrl: 'leaflet/images/whiskey_still.png', //make sure this is the correct path
+          //     iconSize:     [38, 45], // size of the icon
+          //     iconAnchor:   [19, 1], // point of the icon which will correspond to marker's location
+          //     popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+          //});
 	       
 	       //var marker = L.marker([44.606636773474854, -72.26347660710185],{icon: brewery}).addTo(mymap);
 	       //marker.bindPopup("<b>Hill Farmstead Brewery!</b><br>");
@@ -38,36 +38,49 @@
 	       
 	       //var refreshments = L.layerGroup([brewery,distillery]);
 	       
-	       var grayscale = L.tileLayer(mapboxUrl, {id: 'MapID', tileSize: 512, zoomOffset: -1, attribution: mapboxAttribution}),
+	       var littleton = L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.'),
+                denver    = L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.'),
+                aurora    = L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.'),
+                golden    = L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.');
+           
+           var cities = L.layerGroup([littleton, denver, aurora, golden]); //combining items into one layer to add or remove from map
+           
+           var grayscale = L.tileLayer(mapboxUrl, {id: 'MapID', tileSize: 512, zoomOffset: -1, attribution: mapboxAttribution}),
                streets   = L.tileLayer(mapboxUrl, {id: 'MapID', tileSize: 512, zoomOffset: -1, attribution: mapboxAttribution});
-
-           var mymap = L.map('map',{
-                center: [44.606636773474854, -72.26347660710185],
-                zoom: 10, //increase to zoom in
-                layers: [grayscale]
+           
+           var map = L.map('map', {
+               center: [39.73, -104.99],
+               zoom: 10,
+               layers: [grayscale, cities]
            });
-           
-           L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		       maxZoom: 18,
-		       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-			       'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		           id: 'mapbox/streets-v11',
-		       tileSize: 512,
-		       zoomOffset: -1
-	       }).addTo(mymap);
-           
-           L.control.scale().addTo(mymap); //adding scale to map
            
            var baseMaps = {
                "Grayscale": grayscale,
                "Streets": streets
            };
            
+           var overlayMaps = {
+               "Cities": cities
+           };
+
+	                
+           //L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		   //    maxZoom: 18,
+		   //    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+		   //        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		   //        id: 'mapbox/streets-v11',
+		   //    tileSize: 512,
+		   //    zoomOffset: -1
+	       //}).addTo(mymap);
+           //
+           
+           
            //var overlayMaps = {
            //    "Refreshments": refreshments
            //};
            
-           L.control.layers(baseMaps).addTo(mymap);
+           L.control.layers(baseMaps).addTo(mymap); //adding control of layers
+           L.control.scale().addTo(mymap); //adding scale to map
             
        </script>
    </body>
