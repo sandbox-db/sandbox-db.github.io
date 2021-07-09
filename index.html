@@ -25,6 +25,8 @@
 		       zoomOffset: -1
 	       }).addTo(mymap);
 	       
+	       L.control.scale().addTo(map); //adding scale to map
+	       
 	      var brewery = L.icon({
                iconUrl: 'leaflet/images/brewery.png', //make sure this is the correct path
                iconSize:     [38, 45], // size of the icon
