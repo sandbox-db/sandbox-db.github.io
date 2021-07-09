@@ -638,4 +638,13 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	margin-left: -12px;
 	border-right-color: #fff;
 	}
-#mapid { height: 600px; width: 600px}
+/* #mapid { height: 600px; width: 600px} 
+*/
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body, #map {
+    height: 100%;
+    width: 100vw;
+}
