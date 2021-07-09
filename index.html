@@ -9,12 +9,12 @@
 
    </head>
    <body>
-       Now 12:52
+       Now 8:27
        <div id="map">
        </div>
        <script>
            
-           var mymap = L.map('map').setView([44.606636773474854, -72.26347660710185], 10); //larger number more zoom
+           //var mymap = L.map('map').setView([44.606636773474854, -72.26347660710185], 10); //larger number more zoom
            
 	       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		       maxZoom: 18,
@@ -46,6 +46,28 @@
 	       
 	       var marker = L.marker([44.53734575576426, -72.61957801465351],{icon: distillery}).addTo(mymap);
 	       marker.bindPopup("<b>Green mountain distillers!</b><br>");
+	       
+	       var refreshments = L.layerGroup([brewery,distillery]);
+	       
+	       var grayscale = L.tileLayer(mapboxUrl, {id: 'MapID', tileSize: 512, zoomOffset: -1, attribution: mapboxAttribution}),
+               streets   = L.tileLayer(mapboxUrl, {id: 'MapID', tileSize: 512, zoomOffset: -1, attribution: mapboxAttribution});
+
+           var mymap = L.map('map',{
+                center: [44.606636773474854, -72.26347660710185],
+                zoom: 10, //increase to zoom in
+                layers: [grayscale, refreshments]
+           });
+           
+           var baseMaps = {
+               "Grayscale": grayscale,
+               "Streets": streets
+           };
+           
+           var overlayMaps = {
+               "Refreshments": refreshments
+           };
+           
+           L.control.layers(baseMaps, overlayMaps).addTo(mymap);
             
        </script>
    </body>
