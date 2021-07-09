@@ -9,23 +9,12 @@
 
    </head>
    <body>
-       Now 8:31
+       Now 8:33
        <div id="map">
        </div>
        <script>
            
-           //var mymap = L.map('map').setView([44.606636773474854, -72.26347660710185], 10); //larger number more zoom
-           
-	       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-		       maxZoom: 18,
-		       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-			       'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		           id: 'mapbox/streets-v11',
-		       tileSize: 512,
-		       zoomOffset: -1
-	       }).addTo(mymap);
-	       
-	       
+           //var mymap = L.map('map').setView([44.606636773474854, -72.26347660710185], 10); //larger number more zoom 
 	       
 	      var brewery = L.icon({
                iconUrl: 'leaflet/images/brewery.png', //make sure this is the correct path
@@ -57,6 +46,15 @@
                 zoom: 10, //increase to zoom in
                 layers: [grayscale, refreshments]
            });
+           
+           L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		       maxZoom: 18,
+		       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+			       'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		           id: 'mapbox/streets-v11',
+		       tileSize: 512,
+		       zoomOffset: -1
+	       }).addTo(mymap);
            
            L.control.scale().addTo(mymap); //adding scale to map
            
