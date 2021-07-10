@@ -9,7 +9,7 @@
 
    </head>
    <body>
-       Updated 2021/07/10 00:47 EST
+       Updated 2021/07/10 01:47 EST
        <div id="map">
        </div>
        <script>
@@ -168,15 +168,28 @@
          //};
          
          // Dynamic me
-         function onLocationFound(e) {
-           var radius = e.accuracy / 2;
-           L.marker(e.latlng).addTo(mymap)
-              .bindPopup("You are within " + radius + " meters from this point").openPopup();
-           L.circle(e.latlng, radius).addTo(mymap);
-         }
+         // https://gis.stackexchange.com/a/259983 <--kinda works but doesn't clear location and keeps adding markers
+         // https://stackoverflow.com/a/22602096 <-- untested...
+         // https://gis.stackexchange.com/a/342074 <-- promising ?
+         var gpsMarker = null;
+         var gpsCircleMarker;
 
-         mymap.on('locationfound', onLocationFound);
-         mymap.locate({watch: true});
+         function onLocationFound(e) {
+            var radius = e.accuracy / 2;
+            var popupContent = "You are within " + radius + " meters from this point";
+
+            if (gpsMarker == null) {
+                gpsMarker = L.marker(e.latlng,).addTo(mymap);
+                gpsMarker.bindPopup(popupContent).openPopup();
+                gpsCircleMarker = L.circle(e.latlng, radius).addTo(mymap);
+            }
+            else {
+                gpsMarker.getPopup().setContent(popupContent);   
+                gpsMarker.setLatLng(e.latlng);
+                gpsCircleMarker.setLatLng(e.latlng);
+                gpsCircleMarker.setRadius(radius);
+                }
+         }
          
          // placeholders for the L.marker and L.circle representing user's current position and accuracy    
          //Controls
