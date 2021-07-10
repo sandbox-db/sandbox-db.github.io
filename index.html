@@ -9,7 +9,7 @@
 
    </head>
    <body>
-       Updated 2021/07/09 17:09 EST
+       Updated 2021/07/09 23:42 EST
        <div id="map">
        </div>
        <script>
@@ -54,13 +54,17 @@
 	     //Add breweries 
 	     var Hill = L.marker([44.60663, -72.26347],{icon: brewery}).bindPopup("<a href='http://www.hillfarmstead.com' target='_blank'>Hill Farmstead Brewery</a>");
 	     var Alchemist = L.marker([44.47742867998274, -72.71614119282586],{icon: brewery}).bindPopup("<a href='https://alchemistbeer.com' target='_blank'>The Alchemist Stowe</a>");
-	     var Treehouse = L.marker([42.13681394517929, -72.0124116036083],{icon: brewery}).bindPopup("<a href='https://treehousebrew.com' target='_blank'>Tree House Brewing Company</a>");
-	     var Maine = L.marker([43.83967505759322, -70.12118027288436],{icon: brewery}).bindPopup("<a href='http://www.mainebeercompany.com' target='_blank'>Maine Beer Company</a>");
-
+	     var Treehouse = L.marker([42.13681394517929, -72.0124116036083],{icon: brewery}).bindPopup("<a href='https://treehousebrew.com' target='_blank'>Tree House Brewing Company #5</a>");
+	     var Maine = L.marker([43.83967505759322, -70.12118027288436],{icon: brewery}).bindPopup("<a href='http://www.mainebeercompany.com' target='_blank'>Maine Beer Company #32</a>");
+	     var Allagash = L.marker([43.70321954096549, -70.31766391695535],{icon: brewery}).bindPopup("<a href='https://www.allagash.com' target='_blank'>Allagash Brewing Company #33</a>");
+	     var Trillium = L.marker([42.352332455033526, -71.04736171328432],{icon: brewery}).bindPopup("<a href='https://www.trilliumbrewing.com/locations/fort-point' target='_blank'>Trillium Brewing Company #4</a>");
+	     var Jacks = L.marker([42.280298727751145, -71.41120478390016],{icon: brewery}).bindPopup("<a href='https://jacksabby.com' target='_blank'>Jack&#39;s Abby Craft Lagers #39</a>");
+	     var Lawson = L.marker([44.18794642455557, -72.83503345386575],{icon: brewery}).bindPopup("<a href='https://www.lawsonsfinest.com' target='_blank'>Lawson&#39;s Finest Liquids</a>");
+	     
 	     
 	     //Add distilleries
-	     var Smuggler = L.marker([44.64749800557561, -72.83109698635812],{icon: distillery});   
-	     Smuggler.bindPopup("<b>Smuggler's Notch Distillery</b><br>");
+	     var Smuggler = L.marker([44.64749800557561, -72.83109698635812],{icon: distillery}).bindPopup("<a href='https://www.smugglersnotchdistillery.com/?age-verified=97f42013e6' target='_blank'>Smuggler&#39;s Notch Distillery</a>");
+	     var Sons = L.marker(41.45462626653591, -71.5049001367355],{icon: distillery}).bindPopup("<a href='http://www.solspirits.com' target='_blank'>Sons of Liberty Spirits Co.</a>");
 	     
 	     
 	     //Add lodging
@@ -101,8 +105,8 @@
          })
          //END of labels and popups
          
-         var breweries = L.layerGroup([Hill, Alchemist,Treehouse,Maine]);
-         var stills = L.layerGroup([Smuggler])
+         var breweries = L.layerGroup([Hill,Alchemist,Treehouse,Maine,Allagash,Trillium,Jacks,Lawson]);
+         var stills = L.layerGroup([Smuggler,Sons])
          var lodging = L.layerGroup([Sugarloaf,Blackmtn,Seawall,HarborView,Jigger])
          
          var overlayMaps = {
@@ -123,7 +127,7 @@
 		       zoomOffset: -1
 	      }).addTo(mymap);
 	      
-	      // Where are you?
+	      // Where is this?
 	      var popup = L.popup();
           function onMapClick(e) {
               popup
@@ -133,7 +137,19 @@
           }
           
           mymap.on('click', onMapClick);
+         // Where am I? https://gist.github.com/joyrexus/8681168
+
+         //function render(pos) {
+         //    var lat = pos.coords.latitude;
+         //    var lon = pos.coords.longitude;
+       
+	     //    var HEREISME = L.marker([lat,lon]).bindPopup("You are here").addTo(mymap)
+         //};
          
+         // Dynamic me
+         
+
+         // placeholders for the L.marker and L.circle representing user's current position and accuracy    
          //Controls
          L.control.layers(baseMaps, overlayMaps).addTo(mymap);
          L.control.scale().addTo(mymap); //adding scale to map    
