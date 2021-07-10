@@ -9,7 +9,7 @@
 
    </head>
    <body>
-       Updated 2021/07/09 23:42 EST
+       Updated 2021/07/10 00:32 EST
        <div id="map">
        </div>
        <script>
@@ -29,6 +29,18 @@
          var lodging = L.icon({
                iconUrl: 'leaflet/images/lodging.png', //make sure this is the correct path
                iconSize:     [38, 45], // size of the icon
+               iconAnchor:   [19, 1], // point of the icon which will correspond to marker's location
+               popupAnchor:  [0, 0] //point from which the popup should open relative to the iconAnchor
+          });
+          var hiking = L.icon({
+               iconUrl: 'leaflet/images/hiking2.png', //make sure this is the correct path
+               iconSize:     [55, 65], // size of the icon
+               iconAnchor:   [19, 1], // point of the icon which will correspond to marker's location
+               popupAnchor:  [0, 0] //point from which the popup should open relative to the iconAnchor
+          });
+          var mountain = L.icon({
+               iconUrl: 'leaflet/images/mountains.png', //make sure this is the correct path
+               iconSize:     [55, 65], // size of the icon
                iconAnchor:   [19, 1], // point of the icon which will correspond to marker's location
                popupAnchor:  [0, 0] //point from which the popup should open relative to the iconAnchor
           });
@@ -73,7 +85,11 @@
 	     var Seawall   = L.marker([44.24216010405409, -68.30592009994584],{icon: lodging}).bindPopup("<a href='https://www.recreation.gov/camping/campgrounds/234674' target='_blank'>Seawall Campground</a>");
 	     var HarborView   = L.marker([44.27781818968163, -68.32435780364541],{icon: lodging}).bindPopup("<a href='https://www.harborviewmotelandcottages.com/area' target='_blank'>Harbor View Motel & Cottages</a>");
 	     var Jigger   = L.marker([43.99517403698421, -71.33549803063784],{icon: lodging}).bindPopup("<a href='https://www.fs.usda.gov/recarea/whitemountain/recarea/?recid=74865' target='_blank'>Jigger Johnson Campground</a>");
+	     var DryRiver   = L.marker([44.15512, -71.36292],{icon: lodging}).bindPopup("Coin operated showers");
 
+	     //Add Nature
+	     var Acadia = L.marker([44.337960188718434, -68.28033645025478],{icon: hiking}).bindPopup("<a href='https://www.nps.gov/acad/index.htm' targer='_blank'>Acadia National Park</a>");
+	     var MntPisgah = L.marker([44.73047284719918, -72.03088810875747],{icon: mountain}).bindPopup("<a href='https://www.alltrails.com/explore/trail/us/vermont/mount-pisgah-trail' targer='_blank'>1) Mount Pisgah Trail</a></br><a href='https://www.alltrails.com/explore/trail/us/vermont/north-trail-mount-pisgah' targer='_blank'>2) Mount Pisgah Via N. Trail</a>");
 	     
 	     //Add labels or popups in html format
          let isClicked = false
@@ -107,17 +123,21 @@
          
          var breweries = L.layerGroup([Hill,Alchemist,Treehouse,Maine,Allagash,Trillium,Jacks,Lawson]);
          var stills = L.layerGroup([Smuggler,Sons]);
-         var lodging = L.layerGroup([Sugarloaf,Blackmtn,Seawall,HarborView,Jigger]);
+         var lodging = L.layerGroup([Sugarloaf,Blackmtn,Seawall,HarborView,Jigger,DryRiver]);
+         var nature = L.layerGroup([Acadia,MntPisgah]);
          
          var overlayMaps = {
                "Breweries": breweries,
                "Distilleries": stills,
+               "Nature": nature,
                "ZzzZzz's": lodging
            };
            
          mymap.addLayer(breweries);
          mymap.addLayer(stills);
+         mymap.addLayer(nature);
          mymap.addLayer(lodging);
+
 	     
 	     L.tileLayer(mbUrl, //'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
 		       {maxZoom: 18,
