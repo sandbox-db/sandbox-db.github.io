@@ -121,6 +121,7 @@
          })
          //END of labels and popups
          
+         // Add layers
          var breweries = L.layerGroup([Hill,Alchemist,Treehouse,Maine,Allagash,Trillium,Jacks,Lawson]);
          var stills = L.layerGroup([Smuggler,Sons]);
          var lodging = L.layerGroup([Sugarloaf,Blackmtn,Seawall,HarborView,Jigger,DryRiver]);
@@ -167,8 +168,16 @@
          //};
          
          // Dynamic me
-         
+         function onLocationFound(e) {
+           var radius = e.accuracy / 2;
+           L.marker(e.latlng).addTo(mymap)
+              .bindPopup("You are within " + radius + " meters from this point").openPopup();
+           L.circle(e.latlng, radius).addTo(mymap);
+         }
 
+         mymap.on('locationfound', onLocationFound);
+         mymap.locate({setView: true, watch: true, maxZoom: 8});
+         
          // placeholders for the L.marker and L.circle representing user's current position and accuracy    
          //Controls
          L.control.layers(baseMaps, overlayMaps).addTo(mymap);
