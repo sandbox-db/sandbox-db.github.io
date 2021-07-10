@@ -9,7 +9,7 @@
 
    </head>
    <body>
-       Updated 2021/07/10 01:47 EST
+       Updated 2021/07/10 01:12 EST
        <div id="map">
        </div>
        <script>
@@ -190,7 +190,8 @@
                 gpsCircleMarker.setRadius(radius);
                 }
          }
-         
+         mymap.on('locationfound', onLocationFound);
+         mymap.locate({watch: true});
          // placeholders for the L.marker and L.circle representing user's current position and accuracy    
          //Controls
          L.control.layers(baseMaps, overlayMaps).addTo(mymap);
