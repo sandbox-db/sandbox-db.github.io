@@ -171,16 +171,17 @@
          // https://gis.stackexchange.com/a/259983 <--kinda works but doesn't clear location and keeps adding markers
          // https://stackoverflow.com/a/22602096 <-- untested...
          // https://gis.stackexchange.com/a/342074 <-- promising ?
+         // https://gitlab.com/IvanSanchez/Leaflet.Marker.SlideTo
          var gpsMarker = null;
          var gpsCircleMarker;
 
          function onLocationFound(e) {
             var radius = e.accuracy / 2;
-            var popupContent = "You are within " + radius + " meters from this point";
+            var popupContent = "You are here +/-" + radius + " a few meters";
 
             if (gpsMarker == null) {
                 gpsMarker = L.marker(e.latlng,).addTo(mymap);
-                gpsMarker.bindPopup(popupContent).openPopup();
+                gpsMarker.bindPopup(popupContent);
                 gpsCircleMarker = L.circle(e.latlng, radius).addTo(mymap);
             }
             else {
@@ -191,7 +192,7 @@
                 }
          }
          mymap.on('locationfound', onLocationFound);
-         mymap.locate({watch: true});
+         mymap.locate({setView: false, watch: true});
          // placeholders for the L.marker and L.circle representing user's current position and accuracy    
          //Controls
          L.control.layers(baseMaps, overlayMaps).addTo(mymap);
