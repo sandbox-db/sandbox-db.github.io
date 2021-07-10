@@ -64,7 +64,7 @@
 	     
 	     //Add distilleries
 	     var Smuggler = L.marker([44.64749800557561, -72.83109698635812],{icon: distillery}).bindPopup("<a href='https://www.smugglersnotchdistillery.com/?age-verified=97f42013e6' target='_blank'>Smuggler&#39;s Notch Distillery</a>");
-	     var Sons = L.marker(41.45462626653591, -71.5049001367355],{icon: distillery}).bindPopup("<a href='http://www.solspirits.com' target='_blank'>Sons of Liberty Spirits Co.</a>");
+	     var Sons = L.marker([41.45462626653591, -71.5049001367355],{icon: distillery}).bindPopup("<a href='http://www.solspirits.com' target='_blank'>Sons of Liberty Spirits Co.</a>");
 	     
 	     
 	     //Add lodging
@@ -106,8 +106,8 @@
          //END of labels and popups
          
          var breweries = L.layerGroup([Hill,Alchemist,Treehouse,Maine,Allagash,Trillium,Jacks,Lawson]);
-         var stills = L.layerGroup([Smuggler,Sons])
-         var lodging = L.layerGroup([Sugarloaf,Blackmtn,Seawall,HarborView,Jigger])
+         var stills = L.layerGroup([Smuggler,Sons]);
+         var lodging = L.layerGroup([Sugarloaf,Blackmtn,Seawall,HarborView,Jigger]);
          
          var overlayMaps = {
                "Breweries": breweries,
