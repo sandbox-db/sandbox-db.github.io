@@ -8,7 +8,7 @@
        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
    </head>
    <body>
-       Last updated 2021/07/11 @ 14:38 EST
+       Last updated 2021/07/11 @ 15:17 EST
        <div id="map">
        </div>
        <script>
@@ -115,6 +115,8 @@
 	     var Jigger   = L.marker([43.99517403698421, -71.33549803063784],{icon: camping}).bindPopup("<a href='https://www.fs.usda.gov/recarea/whitemountain/recarea/?recid=74865' target='_blank'>Jigger Johnson Campground</a>");
 	     var DryRiver   = L.marker([44.15512, -71.36292],{icon: camping}).bindPopup("Coin operated showers");
          var FlowerFarm = L.marker([44.25050251668252, -72.76061422886889],{icon: lodging}).bindPopup("<a href='https://www.airbnb.com/rooms/40668531?source_impression_id=p3_1626027512_eeKtH2mW2GfiGjPK&guests=1&adults=1' target='_blank'>airbnb Flower Farm</a>");
+         var Quechee   = L.marker([43.63640517558674, -72.4009893590282],{icon: camping}).bindPopup("<a href='https://vtstateparks-visit.com/camping/quechee-state-park/r/campgroundDetails.do?contractCode=VT&parkId=1280021' target='_blank'>Quecheee State Park</a>");
+
          
 	     //Add Nature
 	     var Acadia = L.marker([44.337960188718434, -68.28033645025478],{icon: natl_park}).bindPopup("<a href='https://www.nps.gov/acad/index.htm' targer='_blank'>Acadia National Park</a>");
@@ -154,7 +156,7 @@
          // Add layers
          var breweries = L.layerGroup([Hill,Alchemist,Treehouse,Maine,Allagash,Trillium,Jacks,Lawson]);
          var stills = L.layerGroup([Smuggler,Sons]);
-         var lodging = L.layerGroup([Sugarloaf,Blackmtn,Seawall,HarborView,Jigger,DryRiver,FlowerFarm]);
+         var lodging = L.layerGroup([Sugarloaf,Blackmtn,Seawall,HarborView,Jigger,DryRiver,FlowerFarm,Quechee]);
          var nature = L.layerGroup([Acadia,MntPisgah,Moosalamoo]);
          
          var overlayMaps = {
