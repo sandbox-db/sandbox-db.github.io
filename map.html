@@ -102,6 +102,8 @@
 	     var Lawson = L.marker([44.18794642455557, -72.83503345386575],{icon: brewery}).bindPopup("<a href='https://www.lawsonsfinest.com' target='_blank'>Lawson&#39;s Finest Liquids</a>");
 	     
 	     
+	     //Add food
+	     
 	     //Add distilleries
 	     var Smuggler = L.marker([44.64749800557561, -72.83109698635812],{icon: distillery}).bindPopup("<a href='https://www.smugglersnotchdistillery.com/?age-verified=97f42013e6' target='_blank'>Smuggler&#39;s Notch Distillery</a>");
 	     var Sons = L.marker([41.45462626653591, -71.5049001367355],{icon: distillery}).bindPopup("<a href='http://www.solspirits.com' target='_blank'>Sons of Liberty Spirits Co.</a>");
@@ -122,6 +124,8 @@
 	     var Acadia = L.marker([44.337960188718434, -68.28033645025478],{icon: natl_park}).bindPopup("<a href='https://www.nps.gov/acad/index.htm' targer='_blank'>Acadia National Park</a>");
 	     var MntPisgah = L.marker([44.73047284719918, -72.03088810875747],{icon: mountain}).bindPopup("<a href='https://www.alltrails.com/explore/trail/us/vermont/mount-pisgah-trail' targer='_blank'>1) Mount Pisgah Trail</a></br><a href='https://www.alltrails.com/explore/trail/us/vermont/north-trail-mount-pisgah' targer='_blank'>2) Mount Pisgah Via N. Trail</a>");
 	     var Moosalamoo = L.marker([43.91844, -73.02535],{icon: hiking}).bindPopup("<a href='https://www.alltrails.com/trail/us/vermont/mount-moosalamoo-campground-trail' targer='_blank'>Mount Moosalamoo Trail</a>");
+         var MntMansfield = L.marker([44.543903300306766, -72.81432730332185],{icon: mountain}).bindPopup("<a href='https://www.alltrails.com/explore/trail/us/vermont/sunset-ridge-and-long-trail-loop'>1) Sunset Ridge and Long Trail Loop</a></br><a href='https://www.alltrails.com/explore/trail/us/vermont/mount-mansfield-loop-trail' targer='_blank'>2) Mount Mansfield Loop Trail</a></br><a href='https://www.alltrails.com/explore/trail/us/vermont/mount-mansfield-via-hellbrook-trail-and-the-long-trail'>3) Mount Mansfield via Hellbrook Trail and the Long Trail</a>");
+	     
 	     
 	     //Add labels or popups in html format
          let isClicked = false
@@ -157,7 +161,7 @@
          var breweries = L.layerGroup([Hill,Alchemist,Treehouse,Maine,Allagash,Trillium,Jacks,Lawson]);
          var stills = L.layerGroup([Smuggler,Sons]);
          var lodging = L.layerGroup([Sugarloaf,Blackmtn,Seawall,HarborView,Jigger,DryRiver,FlowerFarm,Quechee]);
-         var nature = L.layerGroup([Acadia,MntPisgah,Moosalamoo]);
+         var nature = L.layerGroup([Acadia,MntPisgah,Moosalamoo,MntMansfield]);
          
          var overlayMaps = {
                "Breweries": breweries,
