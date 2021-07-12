@@ -49,7 +49,7 @@
        <title>Map of NE trip</title>
    </head>
    <body>
-       Last updated 2021/07/12 @ 13:21 EST + What3Words functionality
+       Last updated 2021/07/12 @ 13:21 EST + What3Words stableish-ish
        <div id="wrapper">
          <div id="autosuggest">
            <what3words-autosuggest id="suggestComponent" />
@@ -304,27 +304,27 @@
          // https://stackoverflow.com/a/22602096 <-- untested...
          // https://gis.stackexchange.com/a/342074 <-- promising ?
          // https://gitlab.com/IvanSanchez/Leaflet.Marker.SlideTo
-         //var gpsMarker = null;
-         //var gpsCircleMarker;
+         var gpsMarker = null;
+         var gpsCircleMarker;
 
-         //function onLocationFound(e) {
-         //   var radius = e.accuracy / 2;
-         //   var popupContent = "You are here +/-" + radius + " a few meters";
+         function onLocationFound(e) {
+            var radius = e.accuracy / 2;
+            var popupContent = "You are here +/-" + radius + " a few meters";
 
-         //   if (gpsMarker == null) {
-         //       gpsMarker = L.marker(e.latlng,).addTo(mymap);
-         //       gpsMarker.bindPopup(popupContent);
-         //       gpsCircleMarker = L.circle(e.latlng, radius).addTo(mymap);
-         //   }
-         //   else {
-         //       gpsMarker.getPopup().setContent(popupContent);   
-         //       gpsMarker.setLatLng(e.latlng);
-         //       gpsCircleMarker.setLatLng(e.latlng);
-         //       gpsCircleMarker.setRadius(radius);
-         //       }
-         //}
-         //mymap.on('locationfound', onLocationFound);
-         //mymap.locate({setView: false, watch: true});
+            if (gpsMarker == null) {
+                gpsMarker = L.marker(e.latlng,).addTo(mymap);
+                gpsMarker.bindPopup(popupContent);
+                gpsCircleMarker = L.circle(e.latlng, radius).addTo(mymap);
+            }
+            else {
+                gpsMarker.getPopup().setContent(popupContent);   
+                gpsMarker.setLatLng(e.latlng);
+                gpsCircleMarker.setLatLng(e.latlng);
+                gpsCircleMarker.setRadius(radius);
+                }
+         }
+         mymap.on('locationfound', onLocationFound);
+         mymap.locate({setView: false, watch: true});
          
          // Driving directions?
          // https://stackoverflow.com/a/25839099
