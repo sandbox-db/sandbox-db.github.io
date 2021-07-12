@@ -640,7 +640,7 @@ svg.leaflet-image-layer.leaflet-interactive path {
 	}
 /* #mapid { height: 600px; width: 600px} 
 */
-body {
+/* body {
     padding: 0;
     margin: 0;
 }
@@ -648,3 +648,4 @@ html, body, #map {
     height: 98%;
     width: 100vw;
 }
+*/
