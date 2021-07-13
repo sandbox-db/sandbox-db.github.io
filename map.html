@@ -15,12 +15,16 @@
          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
          crossorigin=""
        />
+       <!--Add leaflet geoman CSS (https://github.com/geoman-io/leaflet-geoman)-->
+       <link rel="stylesheet" href="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.css" />  
        <!-- Make sure you put this AFTER Leaflet's CSS -->
        <script
          src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
          integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
          crossorigin=""
        ></script>
+       <!--Add leaflet geoman JS (https://github.com/geoman-io/leaflet-geoman)-->
+       <script src="https://unpkg.com/@geoman-io/leaflet-geoman-free@latest/dist/leaflet-geoman.min.js"></script>  
        <!-- Add What3Words Functionality -->       
        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js"></script>
        <style>
@@ -49,7 +53,7 @@
        <title>Map of NE trip</title>
    </head>
    <body>
-       Last updated 2021/07/12 @ 13:21 EST + What3Words stableish-ish
+       Last updated 2021/07/12 @ 18:51 EST + What3Words + Drawing
        <div id="wrapper">
          <div id="autosuggest">
            <what3words-autosuggest id="suggestComponent" />
@@ -133,7 +137,7 @@
          
 	     //https://github.com/Leaflet/Leaflet/issues/7331#issuecomment-742454380
          //https://gis.stackexchange.com/a/271616 
-	     var mymap = L.map("map",{zoomControl: false, tap: false}).setView(
+	     var mymap = L.map("map",{drawControl: true, zoomControl: false, tap: false}).setView(
 	          [43.997512, -70.894775],
 	          10
 	          ); //larger number more zoom
@@ -287,18 +291,34 @@
          mymap.addLayer(stills);
          mymap.addLayer(nature);
          mymap.addLayer(lodging);
-         //       	      
+         
+         // Draw toolbar
+         // https://github.com/geoman-io/leaflet-geoman
+         // add Leaflet-Geoman controls with some options to the map  
+         mymap.pm.addControls({  
+           position: 'bottomleft',  
+         }); 
+  
 	     // Where is this?
+	     // https://stackoverflow.com/a/41180266 <-- for long click
 	     var popup = L.popup();
+	     var mousedownInterval;
          function onMapClick(e) {
              popup
                  .setLatLng(e.latlng)
                  .setContent("You clicked on: " + e.latlng.toString())
                  .openOn(mymap);
          }
-         // 
-         mymap.on('click', onMapClick);
+         mymap.on('dblclick', onMapClick);         
+
+         //mymap.on('mousedown',function(e) {
+         //    mousedownInterval = setInterval(onMapClick(e),2000);
+         //    });
          
+         //mymap.on('mouseup',function(){
+         //   clearInterval(mousedownInterval);
+         //   });
+        
          // Dynamic me
          // https://gis.stackexchange.com/a/259983 <--kinda works but doesn't clear location and keeps adding markers
          // https://stackoverflow.com/a/22602096 <-- untested...
