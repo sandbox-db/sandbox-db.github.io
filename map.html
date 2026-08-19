@@ -83,7 +83,7 @@
          
 	     var top_brewery = L.icon({
                iconUrl: 'leaflet/images/top_beer.png', //make sure this is the correct path
-               iconSize:     [40, 60], // size of the icon test
+               iconSize:     [40, 60], // size of the icon
                iconAnchor:   [19, 1], // point of the icon which will correspond to marker's location
                popupAnchor:  [0, 0] // point from which the popup should open relative to the iconAnchor
             });
@@ -145,7 +145,7 @@
 	     L.tileLayer(mbUrl, //'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYm9ycmVnb2QiLCJhIjoiY210MHFqOHB3MDdoZjJ4cTZwaXF1aWo4bCJ9.k3679xeMuBxNmABsTa7Jgw', {
 		       {maxZoom: 18,
 		       attribution: mbAttr,
-		       id: 'mapbox/outdoors-v11',
+		       id: 'mapbox/standard', //'mapbox/outdoors-v11',
 		       maxNativeZoom:19,
 		       maxZoom:25,
 		       tileSize: 512,
@@ -192,12 +192,14 @@
 	     //mymap.zoomControl.setPosition("bottomright");
 
 	     var outdoors = L.tileLayer(mbUrl, {id: 'mapbox/outdoors-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr}),
+         standard = L.tileLayer(mbUrl, {id: 'mapbox/standard', tileSize: 512, zoomOffset: -1, attribution: mbAttr}),
 		     streets  = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr}),
 		     grayscale   = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
          
          ////To learn more about styles: https://docs.mapbox.com/api/maps/styles/
          var baseMaps = {
                "Outdoors": outdoors,
+               "Standard": standard,
                "Streets": streets,
                "Grayscale": grayscale              
          };
